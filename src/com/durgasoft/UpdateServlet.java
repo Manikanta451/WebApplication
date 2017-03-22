@@ -15,9 +15,10 @@ public class UpdateServlet extends HttpServlet {
 		String ename=request.getParameter("ename");
 		String eaddr=request.getParameter("eaddr");
 		String egender=request.getParameter("egender");
+		String edoj=request.getParameter("edoj");
 		EmployeeDao dao=EmployeeDaoFactory.getEmployeeDao();
-		String status=dao.update(eid,ename,eaddr,egender);
-		RequestDispatcher rd=request.getRequestDispatcher(status+".html");
+		String status=dao.update(eid,ename,eaddr,egender,edoj);
+		RequestDispatcher rd=request.getRequestDispatcher("update.html");
 		rd.forward(request, response);
 	}
 

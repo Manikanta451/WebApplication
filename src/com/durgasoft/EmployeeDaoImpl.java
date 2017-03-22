@@ -14,7 +14,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		con=ConnectionFactory.getConnection();
 	}
 	@Override
-	public String add(String eid, String ename, String eaddr, String egender) {
+	public String add(String eid, String ename, String eaddr, String egender,String edoj) {
 		try {
 			pst=con.prepareStatement("select * from employee where eid=?");
 			pst.setString(1, eid);
@@ -23,11 +23,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			if(b==true){
 				status="existed";
 			}else{
-				pst=con.prepareStatement("insert into employee values(?,?,?,?)");
+				pst=con.prepareStatement("insert into employee values(?,?,?,?,?)");
 				pst.setString(1, eid);
 				pst.setString(2, ename);
 				pst.setString(3, eaddr);
 				pst.setString(4, egender);
+				pst.setString(5,  edoj);
 				pst.executeUpdate();
 				status="success";
 			}
@@ -38,10 +39,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return status;
 	}
 	public EmployeeTo search(String eid){
-		eto=getemployee(eid);
+		eto=getEmployee(eid);
 		return eto;
 	}
-	public EmployeeTo getStudent(String eid){
+	public EmployeeTo getEmployee(String eid){
 		try {
 			pst=con.prepareStatement("select * from employee where eid=?");
 			pst.setString(1, eid);
@@ -53,6 +54,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				eto.setEname(rs.getString("ENAME"));
 				eto.setEaddr(rs.getString("EADDR"));
 				eto.setEgender(rs.getString("EGENDER"));
+				eto.setEdoj(rs.getString("EDOJ"));
 				
 			}else{
 				eto=null;
@@ -64,13 +66,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return eto;
 	}
 	@Override
-	public String update(String eid, String ename, String eaddr, String egender) {
+	public String update(String eid, String ename, String eaddr, String egender,String edoj) {
 		try {
-			pst=con.prepareStatement("update employee set ename=?,eaddr=? where eid=?");
+			pst=con.prepareStatement("update employee set ename=?,eaddr=?,egender=? where eid=?");
 			pst.setString(1, ename);
 			pst.setString(2, eaddr);
-			pst.setString(3, eid);
-			pst.setString(4,egender);
+			pst.setString(3, egender);
+			pst.setString(4, eid);
 			pst.executeUpdate();
 			status="success";
 		} catch (Exception e) {
@@ -101,9 +103,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return status;
 	}
-	@Override
-	public EmployeeTo getemployee(String eid) {
-		return null;
-	}
+	
+
 
 }

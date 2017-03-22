@@ -2,7 +2,6 @@ package com.durgasoft;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,8 +13,9 @@ public class EditFormServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String eid=request.getParameter("eid");
+		String egender=request.getParameter("egender");
 		EmployeeDao dao=EmployeeDaoFactory.getEmployeeDao();
-		EmployeeTo eto=dao.getemployee(eid);
+		EmployeeTo eto=dao.getEmployee(eid);
 		if(eto!=null){
 			response.setContentType("text/html");
 			PrintWriter out=response.getWriter();
@@ -34,12 +34,10 @@ public class EditFormServlet extends HttpServlet {
 			out.println("<tr>");
 			out.println("<td>Employee Address</td><td><input type='text' name='eaddr' value='"+eto.getEaddr()+"'/></td>");
 			out.println("</tr>");
+			out.println("<tr><td>Gender</td><td><input type='radio' name='egender' value='+Male+'>Male</input</td><td><input type='radio' name='egender' value='FeMale'>Female</input></td></tr>");
 			out.println("<tr>");
-			out.println("<td>Gender</td>");
-			out.println("<td><input type='radio' name='egender' value='Male'>Male</input</td>");
-			out.println("<td><input type='radio' name='egender' value='Female'>Female</input</td>");
+			out.println("<td>Date Of Join</td><td><input type='date' name='edoj' value='"+eto.getEdoj()+"'/></td>");
 			out.println("</tr>");
-			out.println("<tr>");
 			out.println("<td><input type='submit' value='Update'/></td>");
 			out.println("</tr>");
 			out.println("</table></center></form></body></html>");

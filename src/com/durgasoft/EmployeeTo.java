@@ -1,17 +1,16 @@
 package com.durgasoft;
 
+
+
 public class EmployeeTo {
 	private String eid;
 	private String ename;
 	private String eaddr;
 	private String egender;
+	private String edoj;
 	
-	public String getEgender() {
-		return egender;
-	}
-	public void setEgender(String egender) {
-		this.egender = egender;
-	}
+	
+	
 	public String getEid() {
 		return eid;
 	}
@@ -30,5 +29,18 @@ public class EmployeeTo {
 	public void setEaddr(String eaddr) {
 		this.eaddr = eaddr;
 	}
+	public String getEgender() {
+		return egender;
+	}
+	public void setEgender(String egender) {
+		this.egender = egender;
+	}
+	public String getEdoj() {
+		return edoj;
+	}
+	public void setEdoj(String edoj) {
+		this.edoj = edoj;
+	}
+	
 	
 }

@@ -24,6 +24,8 @@ public class SearchServlet extends HttpServlet {
 			out.println("<tr><td>Employee Id</td><td>"+eto.getEid()+"</td></tr>");
 			out.println("<tr><td>Employee Name</td><td>"+eto.getEname()+"</td></tr>");
 			out.println("<tr><td>Employee Address</td><td>"+eto.getEaddr()+"</td></tr>");
+			out.println("<tr><td>Gender</td><td>"+eto.getEgender()+"</td></tr>");
+			out.println("<tr><td>Date Of Join</td><td>"+eto.getEdoj()+"</td></tr>");
 			out.println("</table></center></body></html>");
 		}else{
 			RequestDispatcher rd=request.getRequestDispatcher("notexisted.html");

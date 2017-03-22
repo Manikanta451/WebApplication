@@ -13,7 +13,7 @@ public class DeleteServlet extends HttpServlet {
 		String eid=request.getParameter("eid");
 		EmployeeDao dao=EmployeeDaoFactory.getEmployeeDao();
 		String status=dao.delete(eid);
-		RequestDispatcher rd=request.getRequestDispatcher(status+".html");
+		RequestDispatcher rd=request.getRequestDispatcher("delete.html");
 		rd.forward(request, response);
 	}
 }

@@ -15,8 +15,9 @@ public class AddServlet extends HttpServlet {
 		String ename=request.getParameter("ename");
 		String eaddr=request.getParameter("eaddr");
 		String egender=request.getParameter("egender");
+		String edoj=request.getParameter("edoj");
 		EmployeeDao dao=EmployeeDaoFactory.getEmployeeDao();
-		String status=dao.add(eid,ename,eaddr,egender);
+		String status=dao.add(eid,ename,eaddr,egender,edoj);
 		RequestDispatcher rd=request.getRequestDispatcher(status+".html");
 		rd.forward(request, response);
 	}
